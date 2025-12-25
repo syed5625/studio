@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero" style="background-image:url('{% static "images/hero.png" %}')">
+    <div class="hero-text">
+        <h1>Visual storytelling for food, fashion & aerials</h1>
+        <p>Crafting premium photography experiences through imagery</p>
+    </div>
+</section>
+
+<section class="grid-section reveal">
+    <div class="card">
+        <img src="{% static 'images/food/food1.png' %}">
+        <h3>Food Photography</h3>
+    </div>
+    <div class="card">
+        <img src="{% static 'images/fashion/fashion1.png' %}">
+        <h3>Fashion & Modeling</h3>
+    </div>
+    <div class="card">
+        <img src="{% static 'images/drone/drone1.png' %}">
+        <h3>Drone Photography</h3>
+    </div>
+</section>
+{% endblock %}

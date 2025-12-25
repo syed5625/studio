@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="page-title">Portfolio</h1>
+
+<div class="portfolio-filters">
+    <button onclick="filterImages('all')">All</button>
+    <button onclick="filterImages('food')">Food</button>
+    <button onclick="filterImages('fashion')">Fashion</button>
+    <button onclick="filterImages('drone')">Drone</button>
+</div>
+
+<section class="grid-section reveal">
+    <img src="{% static 'images/food/food1.png' %}" class="lightbox-img food">
+    <img src="{% static 'images/fashion/fashion1.png' %}" class="lightbox-img fashion">
+    <img src="{% static 'images/drone/drone1.png' %}" class="lightbox-img drone">
+</section>
+
+<div id="lightbox">
+    <span onclick="closeLightbox()">×</span>
+    <img id="lightbox-img">
+</div>
+{% endblock %}

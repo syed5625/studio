@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="project-hero" style="background-image:url('{% static "images/hero.png" %}')">
+    <h1>Luxury Food Photography</h1>
+    <p>Editorial visuals designed to elevate brands</p>
+</section>
+
+<section class="grid-section reveal">
+    <img src="{% static 'images/food/food1.png' %}" class="lightbox-img">
+</section>
+{% endblock %}

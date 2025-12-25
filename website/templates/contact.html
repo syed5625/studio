@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <h1>Contact Us</h1>
+
+    <div class="contact-container">
+
+        <!-- LEFT INFO -->
+        <div class="contact-info">
+            <h2>Let’s Work Together</h2>
+            <p>
+                Have a project in mind? Whether it’s food, fashion, or aerial photography,
+                we’d love to hear about it.
+            </p>
+
+            <p>
+                Share your requirements and we’ll get back to you with the next steps.
+            </p>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Project details" rows="5"></textarea>
+            <button type="submit">Send Inquiry</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
