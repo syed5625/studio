@@ -1,27 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="content">
-    <h1>About Us</h1>
 
+<section class="about-hero reveal">
+    <h1>About the Studio</h1>
+    <p class="about-tagline">
+        Crafting visual stories through light, composition, and emotion.
+    </p>
+</section>
+
+<section class="about-content reveal">
     <p>
         We are a creative photography studio focused on delivering visually compelling
         stories through imagery. Our work blends creativity, technical expertise,
-        and modern visual aesthetics.
+        and modern visual aesthetics to create photographs that feel timeless and intentional.
     </p>
+</section>
 
-    <div class="about-highlight">
-        <h3>What We Specialize In</h3>
-        <ul>
-            <li>Food photography for restaurants, brands, and social media</li>
-            <li>Fashion & modeling shoots including weddings and editorials</li>
-            <li>Drone photography for landscapes, events, and commercial projects</li>
-        </ul>
+<section class="about-specialize reveal">
+    <h2>What We Specialize In</h2>
+
+    <div class="specialize-grid">
+        <div class="specialize-card">
+            <h3>Food Photography</h3>
+            <p>
+                Carefully styled imagery for restaurants, brands, and social media,
+                designed to highlight texture, color, and mood.
+            </p>
+        </div>
+
+        <div class="specialize-card">
+            <h3>Fashion & Modeling</h3>
+            <p>
+                Editorial and lifestyle shoots including weddings, portfolios,
+                and brand campaigns with a strong storytelling focus.
+            </p>
+        </div>
+
+        <div class="specialize-card">
+            <h3>Drone Photography</h3>
+            <p>
+                Aerial perspectives for landscapes, events, and commercial projects,
+                offering scale, drama, and cinematic composition.
+            </p>
+        </div>
     </div>
+</section>
 
-    <p style="margin-top:30px;">
-        This website is designed as a static platform that showcases our portfolio,
-        emphasizes visual storytelling, and reflects professional UI/UX standards.
+<section class="about-closing reveal">
+    <p>
+        This website serves as a curated visual space — a static platform designed
+        to showcase our portfolio, emphasize visual storytelling, and reflect
+        professional UI/UX standards.
     </p>
-</div>
+</section>
+
 {% endblock %}
