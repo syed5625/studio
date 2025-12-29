@@ -26,3 +26,7 @@ window.addEventListener('scroll',()=>{
         }
     });
 });
+window.addEventListener("load", () => {
+    const heroText = document.querySelector(".hero-content");
+    heroText.classList.add("show");
+});

@@ -36,6 +36,68 @@ body {
     .nav-links.active { display:flex; }
     .hamburger { display:block; }
 }
+@media (max-width: 768px) {
+    .hero {
+        height: 80vh;
+        padding: 0 6%;
+        background-position: center;
+    }
+
+    .hero-content {
+        text-align: left;
+    }
+}
+
+.hero {
+    position: relative;
+    height: 90vh;
+    background: url("/static/images/hero.png") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    overflow: hidden;
+}
+
+/* Dark overlay for contrast */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.2)
+    );
+}
+
+/* Text container */
+.hero-content {
+    position: relative;
+    max-width: 700px;
+    color: white;
+    z-index: 2;
+}
+
+/* Typography */
+.hero-content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+.hero-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s ease;
+}
+
+.hero-content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .hero {
     height:calc(100vh - 80px);
