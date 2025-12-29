@@ -60,6 +60,7 @@ window.addEventListener("load", () => {
     heroText.classList.add("show");
 });
 const reveals = document.querySelectorAll(".reveal");
+window.addEventListener("load", revealOnLoadAndScroll);
 
 window.addEventListener("scroll", () => {
     reveals.forEach(section => {
