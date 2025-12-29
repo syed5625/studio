@@ -214,3 +214,61 @@ footer {
 .portfolio-grid img:hover {
     transform: scale(1.05);
 }
+/* ================= LIGHTBOX ================= */
+
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 2000;
+}
+
+#lightbox.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#lightbox-img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 12px;
+    animation: zoomIn 0.4s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 42px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Zoom animation */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@media (max-width: 768px) {
+    #lightbox-img {
+        max-width: 95%;
+        max-height: 80%;
+    }
+
+    .lightbox-close {
+        top: 20px;
+        right: 20px;
+    }
+}
