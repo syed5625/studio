@@ -68,7 +68,6 @@ body {
     overflow: hidden;
 }
 
-/* Dark overlay for contrast */
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -79,7 +78,6 @@ body {
     );
 }
 
-/* Text container */
 .hero-content {
     position: relative;
     max-width: 700px;
@@ -87,7 +85,6 @@ body {
     z-index: 2;
 }
 
-/* Typography */
 .hero-content h1 {
     font-size: clamp(2.2rem, 5vw, 3.5rem);
     line-height: 1.2;
@@ -145,7 +142,6 @@ footer {
     border-top:1px solid #eee;
 }
 
-/* Lightbox */
 #lightbox {
     display:none;
     position:fixed;
@@ -163,8 +159,6 @@ footer {
     color:white;
     cursor:pointer;
 }
-
-/* Scroll animation */
 
 .reveal {
     opacity: 0;
@@ -217,7 +211,7 @@ footer {
 .portfolio-grid img:hover {
     transform: scale(1.05);
 }
-/* ================= LIGHTBOX ================= */
+
 
 #lightbox {
     position: fixed;
@@ -253,7 +247,6 @@ footer {
     cursor: pointer;
 }
 
-/* Zoom animation */
 @keyframes zoomIn {
     from {
         transform: scale(0.95);
@@ -275,7 +268,6 @@ footer {
         right: 20px;
     }
 }
-/* ABOUT PAGE */
 
 .about-hero {
     max-width: 900px;
@@ -344,7 +336,6 @@ footer {
     color: #555;
     line-height: 1.6;
 }
-/* CONTACT PAGE */
 
 .contact-hero {
     max-width: 900px;
@@ -376,7 +367,6 @@ footer {
     align-items: center;
 }
 
-/* LEFT TEXT */
 .contact-info h2 {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -388,7 +378,6 @@ footer {
     margin-bottom: 16px;
 }
 
-/* FORM */
 .contact-form {
     background: #fafafa;
     padding: 40px;
@@ -429,7 +418,6 @@ footer {
     background: #222;
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
     .contact-grid {
         grid-template-columns: 1fr;

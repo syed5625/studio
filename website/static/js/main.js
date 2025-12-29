@@ -18,7 +18,6 @@ function closeLightbox() {
     document.body.style.overflow = "";
 }
 
-/* Close on ESC key */
 document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
         closeLightbox();
