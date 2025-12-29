@@ -1,25 +1,7 @@
-/* =========================
-   MOBILE NAVBAR
-========================= */
+
 function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
 }
-
-/* =========================
-   PORTFOLIO FILTERS
-========================= */
-function filterImages(category) {
-    document.querySelectorAll(".lightbox-img").forEach(img => {
-        img.style.display =
-            category === "all" || img.classList.contains(category)
-                ? "block"
-                : "none";
-    });
-}
-
-/* =========================
-   LIGHTBOX (IMMERSIVE)
-========================= */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
@@ -27,7 +9,7 @@ document.querySelectorAll(".lightbox-img").forEach(img => {
     img.addEventListener("click", () => {
         lightbox.classList.add("show");
         lightboxImg.src = img.src;
-        document.body.style.overflow = "hidden"; // lock background scroll
+        document.body.style.overflow = "hidden";
     });
 });
 
@@ -36,38 +18,56 @@ function closeLightbox() {
     document.body.style.overflow = "";
 }
 
-/* Close lightbox on ESC */
+/* Close on ESC key */
 document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
         closeLightbox();
     }
 });
 
-/* =========================
-   SCROLL REVEAL ANIMATIONS
-========================= */
-const reveals = document.querySelectorAll(".reveal");
 
-function handleScrollReveal() {
-    reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        const trigger = window.innerHeight - 100;
 
-        if (top < trigger) {
-            el.classList.add("show");
-        }
+
+
+
+function filterImages(cat) {
+    document.querySelectorAll('.lightbox-img').forEach(img=>{
+        img.style.display = cat==='all'||img.classList.contains(cat)?'block':'none';
     });
 }
 
-window.addEventListener("scroll", handleScrollReveal);
-window.addEventListener("load", handleScrollReveal);
+document.querySelectorAll('.lightbox-img').forEach(img=>{
+    img.onclick=()=>{
+        document.getElementById('lightbox').style.display='flex';
+        document.getElementById('lightbox-img').src=img.src;
+    }
+});
 
-/* =========================
-   HERO TEXT ANIMATION
-========================= */
+function closeLightbox(){
+    document.getElementById('lightbox').style.display='none';
+}
+
+window.addEventListener('scroll',()=>{
+    document.querySelectorAll('.reveal').forEach(el=>{
+        if(el.getBoundingClientRect().top < window.innerHeight-100){
+            el.classList.add('active');
+        }
+    });
+});
+
 window.addEventListener("load", () => {
     const heroText = document.querySelector(".hero-content");
-    if (heroText) {
-        heroText.classList.add("show");
-    }
+    heroText.classList.add("show");
+});
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+    reveals.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        const trigger = window.innerHeight - 100;
+
+        if (top < trigger) {
+            section.classList.add("show");
+        }
+    });
 });
