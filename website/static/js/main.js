@@ -1,3 +1,4 @@
+
 function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
 }
@@ -29,4 +30,16 @@ window.addEventListener('scroll',()=>{
 window.addEventListener("load", () => {
     const heroText = document.querySelector(".hero-content");
     heroText.classList.add("show");
+});
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+    reveals.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        const trigger = window.innerHeight - 100;
+
+        if (top < trigger) {
+            section.classList.add("show");
+        }
+    });
 });

@@ -47,6 +47,16 @@ body {
         text-align: left;
     }
 }
+@media (max-width: 900px) {
+    .portfolio-section {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 
 .hero {
     position: relative;
@@ -163,4 +173,44 @@ footer {
 .reveal.active {
     opacity:1;
     transform:none;
+}
+.portfolio-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    padding: 80px 8%;
+    align-items: center;
+}
+
+.portfolio-section.reverse {
+    grid-template-columns: 2fr 1fr;
+}
+
+.portfolio-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.portfolio-text p {
+    color: #444;
+    line-height: 1.7;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.portfolio-grid img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-grid img:hover {
+    transform: scale(1.05);
 }

@@ -4,21 +4,62 @@
 {% block content %}
 <h1 class="page-title">Portfolio</h1>
 
-<div class="portfolio-filters">
-    <button onclick="filterImages('all')">All</button>
-    <button onclick="filterImages('food')">Food</button>
-    <button onclick="filterImages('fashion')">Fashion</button>
-    <button onclick="filterImages('drone')">Drone</button>
-</div>
+<!-- Food Section -->
+<section class="portfolio-section reveal">
+    <div class="portfolio-text">
+        <h2>Food Photography</h2>
+        <p>
+            Editorial food visuals designed to enhance appetite,
+            texture, and brand storytelling.
+        </p>
+    </div>
 
-<section class="grid-section reveal">
-    <img src="{% static 'images/food/food1.png' %}" class="lightbox-img food">
-    <img src="{% static 'images/fashion/fashion1.png' %}" class="lightbox-img fashion">
-    <img src="{% static 'images/drone/drone1.png' %}" class="lightbox-img drone">
+    <div class="portfolio-grid">
+        <img src="{% static 'images/food/food2.jpg' %}" class="lightbox-img food">
+        <img src="{% static 'images/food/food3.jpg' %}" class="lightbox-img food">
+        <img src="{% static 'images/food/food4.jpg' %}" class="lightbox-img food">
+        <img src="{% static 'images/food/food5.jpg' %}" class="lightbox-img food">
+        <img src="{% static 'images/food/food6.jpg' %}" class="lightbox-img food">
+    </div>
 </section>
 
-<div id="lightbox">
-    <span onclick="closeLightbox()">×</span>
-    <img id="lightbox-img">
-</div>
+<!-- Fashion Section -->
+<section class="portfolio-section reveal reverse">
+    <div class="portfolio-text">
+        <h2>Fashion & Modeling</h2>
+        <p>
+            Timeless fashion imagery blending elegance,
+            emotion, and modern editorial aesthetics.
+        </p>
+    </div>
+
+    <div class="portfolio-grid">
+        <img src="{% static 'images/fashion/fashion2.jpg' %}" class="lightbox-img fashion">
+        <img src="{% static 'images/fashion/fashion3.jpg' %}" class="lightbox-img fashion">
+        <img src="{% static 'images/fashion/fashion4.jpg' %}" class="lightbox-img fashion">
+        <img src="{% static 'images/fashion/fashion5.jpg' %}" class="lightbox-img fashion">
+        <img src="{% static 'images/fashion/fashion6.jpg' %}" class="lightbox-img fashion">
+        <img src="{% static 'images/fashion/fashion7.jpg' %}" class="lightbox-img fashion">
+    </div>
+</section>
+
+<!-- Drone Section -->
+<section class="portfolio-section reveal">
+    <div class="portfolio-text">
+        <h2>Drone Photography</h2>
+        <p>
+            Aerial perspectives capturing scale,
+            geography, and cinematic depth.
+        </p>
+    </div>
+
+    <div class="portfolio-grid">
+        <img src="{% static 'images/drone/drone2.jpg' %}" class="lightbox-img drone">
+        <img src="{% static 'images/drone/drone3.jpg' %}" class="lightbox-img drone">
+        <img src="{% static 'images/drone/drone4.jpg' %}" class="lightbox-img drone">
+        <img src="{% static 'images/drone/drone5.jpg' %}" class="lightbox-img drone">
+        <img src="{% static 'images/drone/drone6.jpg' %}" class="lightbox-img drone">
+    </div>
+</section>
+
 {% endblock %}
