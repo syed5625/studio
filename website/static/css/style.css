@@ -162,9 +162,15 @@ footer {
 
 .reveal {
     opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.8s ease;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .reveal.active {
     opacity: 1;
@@ -211,7 +217,6 @@ footer {
 .portfolio-grid img:hover {
     transform: scale(1.05);
 }
-
 
 #lightbox {
     position: fixed;
