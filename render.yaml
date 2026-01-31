@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: studio
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn studio_site.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: studio_site.settings
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: DEBUG
+        value: "False"
