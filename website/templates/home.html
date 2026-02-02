@@ -1,29 +1,62 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
 
-<section class="hero reveal"
-     style="background-image:url('{{ settings.hero_image.url if settings.hero_image }}')">
+{% if settings and settings.hero_image %}
+<section class="hero" style="background-image: url('{{ settings.hero_image.url }}');">
+{% else %}
+<section class="hero">
+{% endif %}
 
-    <div class="hero-content">
-        <h1>{{ settings.hero_title }}</h1>
-        <p>{{ settings.hero_subtitle }}</p>
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>
+                {{ settings.hero_title|default:"Capturing Moments That Matter" }}
+            </h1>
+            <p>
+                {{ settings.hero_subtitle|default:"Professional photography for every story" }}
+            </p>
+        </div>
     </div>
+
 </section>
 
+
+{% if featured_projects %}
 <section class="grid-section reveal">
-    {% for project in featured_projects %}
-        <a href="{% url 'project_detail' project.slug %}" class="card">
-            <img src="{{ project.cover_image.url }}"
-                 alt="{{ project.title }}"
-                 loading="lazy"
-                 class="lazy-img">
-            <h3>{{ project.title }}</h3>
-        </a>
-    {% empty %}
-        <p>No featured projects yet.</p>
-    {% endfor %}
+    <div class="container">
+        <h2 class="section-title">Featured Work</h2>
+
+        <div class="grid">
+            {% for project in featured_projects %}
+            <a href="{% url 'project_detail' project.slug %}" class="card">
+
+                {% if project.cover_image %}
+                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
+                {% endif %}
+
+                <div class="card-content">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.short_description }}</p>
+                </div>
+
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<section class="about-preview reveal">
+    <div class="container">
+        <h2>About</h2>
+        <p>
+            {{ settings.about_text|default:"I am a passionate photographer dedicated to telling stories through images." }}
+        </p>
+        <a href="{% url 'about' %}" class="btn">Learn More</a>
+    </div>
 </section>
 
 {% endblock %}

@@ -9,7 +9,7 @@ def home(request):
     featured_projects = Project.objects.filter(
         is_featured=True,
         is_published=True
-    )[:3]
+    )[:6]
 
     return render(request, "home.html", {
         "settings": settings,
