@@ -1,15 +1,18 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.exceptions import ValidationError
 
 
-# =========================
-# CATEGORY
-# =========================
+def validate_image_size(image):
+    max_size = 5 * 1024 * 1024 
+    if image.size > max_size:
+        raise ValidationError("Image file too large (maximum 5MB allowed).")
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField(blank=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -24,13 +27,10 @@ class Category(models.Model):
         return self.name
 
 
-# =========================
-# PROJECT
-# =========================
 class Project(models.Model):
     category = models.ForeignKey(
         Category,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT, 
         related_name="projects"
     )
 
@@ -40,7 +40,10 @@ class Project(models.Model):
     short_description = models.CharField(max_length=300)
     description = models.TextField(blank=True)
 
-    cover_image = models.ImageField(upload_to="projects/covers/")
+    cover_image = models.ImageField(
+        upload_to="projects/covers/",
+        validators=[validate_image_size]
+    )
 
     is_featured = models.BooleanField(default=False)
     is_published = models.BooleanField(default=True)
@@ -65,9 +68,6 @@ class Project(models.Model):
         return self.title
 
 
-# =========================
-# PROJECT IMAGES (GALLERY)
-# =========================
 class ProjectImage(models.Model):
     project = models.ForeignKey(
         Project,
@@ -75,7 +75,10 @@ class ProjectImage(models.Model):
         related_name="images"
     )
 
-    image = models.ImageField(upload_to="projects/images/")
+    image = models.ImageField(
+        upload_to="projects/images/",
+        validators=[validate_image_size]
+    )
     caption = models.CharField(max_length=200, blank=True)
     order = models.PositiveIntegerField(default=0)
 
@@ -86,12 +89,16 @@ class ProjectImage(models.Model):
         return f"{self.project.title} – Image {self.order}"
 
 
-# =========================
-# SITE SETTINGS (SINGLETON)
-# =========================
 class SiteSettings(models.Model):
     hero_title = models.CharField(max_length=200)
     hero_subtitle = models.CharField(max_length=300)
+
+    hero_image = models.ImageField(
+        upload_to="site/hero/",
+        blank=True,
+        null=True,
+        validators=[validate_image_size]
+    )
 
     footer_text = models.CharField(max_length=200)
     contact_email = models.EmailField()
@@ -105,12 +112,15 @@ class SiteSettings(models.Model):
     def __str__(self):
         return "Site Settings"
 
+
 class Inquiry(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField()
-
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"Inquiry from {self.name}"

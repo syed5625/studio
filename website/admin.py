@@ -30,6 +30,8 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ("title", "short_description")
     prepopulated_fields = {"slug": ("title",)}
     inlines = [ProjectImageInline]
+    ordering = ("-created_at",)
+
 
     def cover_preview(self, obj):
         if obj.cover_image:
@@ -51,9 +53,9 @@ class ProjectImageAdmin(admin.ModelAdmin):
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
-    """
-    Ensure only ONE SiteSettings row exists
-    """
-
     def has_add_permission(self, request):
         return not SiteSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
