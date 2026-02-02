@@ -153,7 +153,8 @@ DEFAULT_FROM_EMAIL = "syedibrahim5630@gmail.com"
 CONTACT_EMAIL = "syedibrahim5630@gmail.com"
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('dnao3qfpc'),
-    'API_KEY': os.environ.get('567436782863924'),
-    'API_SECRET': os.environ.get('MMEdjsS5nTfCS--SmHnw6Viycho'),
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
+
