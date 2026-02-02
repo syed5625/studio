@@ -27,7 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bsrh8kkgs$!!zkj(^u!n0lm#)#733_1tk6$@nyz#@aqtz_gm0k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG") == "True"
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
 
 
 ALLOWED_HOSTS = [
@@ -158,3 +159,9 @@ CLOUDINARY_STORAGE = {
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_REFERRER_POLICY = "same-origin"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
