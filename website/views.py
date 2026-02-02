@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Project, SiteSettings
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import ContactForm
+from .forms import InquiryForm
 
 def home(request):
     settings = SiteSettings.objects.first()
@@ -54,31 +54,36 @@ def about(request):
 
 
 
-
-
 def contact(request):
+    settings_obj = SiteSettings.objects.first()
     success = False
 
     if request.method == "POST":
-        form = ContactForm(request.POST)
+        form = InquiryForm(request.POST)
         if form.is_valid():
             inquiry = form.save()
 
-            # Send email
             send_mail(
-                subject=f"New Inquiry from {inquiry.name}",
-                message=inquiry.message,
+                subject="New Photography Inquiry",
+                message=f"""
+Name: {inquiry.name}
+Email: {inquiry.email}
+
+Message:
+{inquiry.message}
+""",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.CONTACT_EMAIL],
+                fail_silently=True,
             )
 
             success = True
-            form = ContactForm()  # reset form
+            form = InquiryForm()  
     else:
-        form = ContactForm()
+        form = InquiryForm()
 
     return render(request, "contact.html", {
         "form": form,
-        "success": success
+        "success": success,
+        "settings": settings_obj,
     })
-
