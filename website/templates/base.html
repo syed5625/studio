@@ -2,8 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Creative Studio</title>
+   <title>
+    {% block title %}
+        {{ settings.hero_title|default:"Photography Studio" }}
+    {% endblock %}
+</title>
+
+<meta name="description" content="{% block meta_description %}Professional photography portfolio{% endblock %}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'js/main.js' %}"></script>
 </head>
