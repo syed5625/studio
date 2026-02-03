@@ -1,7 +1,13 @@
-{% block title %}{{ settings.hero_title }}{% endblock %}
-{% block meta_description %}{{ settings.hero_subtitle }}{% endblock %}
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %}
+{{ settings.hero_title|default:"Photography Studio" }}
+{% endblock %}
+
+{% block meta_description %}
+{{ settings.hero_subtitle|default:"Professional photography portfolio" }}
+{% endblock %}
 
 {% block content %}
 
@@ -21,9 +27,7 @@
             </p>
         </div>
     </div>
-
 </section>
-
 
 {% if featured_projects %}
 <section class="grid-section reveal">
@@ -49,7 +53,6 @@
     </div>
 </section>
 {% endif %}
-
 
 <section class="about-preview reveal">
     <div class="container">
