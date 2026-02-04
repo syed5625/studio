@@ -83,6 +83,9 @@ TEMPLATES = [
 ]
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'website/templates']
 WSGI_APPLICATION = 'studio_site.wsgi.application'
+TEMPLATES[0]["OPTIONS"]["context_processors"] += [
+    "website.context_processors.site_settings",
+]
 
 
 # Database
@@ -158,10 +161,13 @@ CLOUDINARY_STORAGE = {
     "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
+"https://*.onrender.com",
 ]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_REFERRER_POLICY = "same-origin"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+WHITENOISE_MAX_AGE = 60 * 60 * 24 * 30  

@@ -39,7 +39,8 @@
             <a href="{% url 'project_detail' project.slug %}" class="card">
 
                 {% if project.cover_image %}
-                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
+                   <img src="{{ project.cover_image.url }}?w=800&h=600&crop=fill&q=auto&f=auto" loading="lazy" alt="{{ project.title }}">
+
                 {% endif %}
 
                 <div class="card-content">

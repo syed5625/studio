@@ -5,16 +5,17 @@ from django.conf import settings
 from .forms import InquiryForm
 
 def home(request):
-    settings = SiteSettings.objects.first()
-    featured_projects = Project.objects.filter(
-        is_featured=True,
-        is_published=True
-    )[:6]
+    featured_projects = (
+        Project.objects
+        .filter(is_featured=True, is_published=True)
+        .select_related("category")
+        .prefetch_related("images")[:6]
+    )
 
     return render(request, "home.html", {
-        "settings": settings,
         "featured_projects": featured_projects,
     })
+
 
 
 def portfolio(request):
