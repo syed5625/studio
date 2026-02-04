@@ -1,12 +1,14 @@
 from django.db import models
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from cloudinary.models import CloudinaryField
 
 
 def validate_image_size(image):
-    max_size = 5 * 1024 * 1024 
+    max_size = 5 * 1024 * 1024  
     if image.size > max_size:
         raise ValidationError("Image file too large (maximum 5MB allowed).")
+
 
 
 class Category(models.Model):
@@ -27,10 +29,11 @@ class Category(models.Model):
         return self.name
 
 
+
 class Project(models.Model):
     category = models.ForeignKey(
         Category,
-        on_delete=models.PROTECT, 
+        on_delete=models.PROTECT,
         related_name="projects"
     )
 
@@ -40,9 +43,10 @@ class Project(models.Model):
     short_description = models.CharField(max_length=300)
     description = models.TextField(blank=True)
 
-    cover_image = models.ImageField(
-        upload_to="projects/covers/",
-        validators=[validate_image_size]
+    cover_image = CloudinaryField(
+        "Project Cover",
+        blank=True,
+        null=True
     )
 
     is_featured = models.BooleanField(default=False)
@@ -68,6 +72,7 @@ class Project(models.Model):
         return self.title
 
 
+
 class ProjectImage(models.Model):
     project = models.ForeignKey(
         Project,
@@ -75,10 +80,12 @@ class ProjectImage(models.Model):
         related_name="images"
     )
 
-    image = models.ImageField(
-        upload_to="projects/images/",
-        validators=[validate_image_size]
+    image = CloudinaryField(
+        "Project Image",
+        blank=True,
+        null=True
     )
+
     caption = models.CharField(max_length=200, blank=True)
     order = models.PositiveIntegerField(default=0)
 
@@ -89,15 +96,15 @@ class ProjectImage(models.Model):
         return f"{self.project.title} – Image {self.order}"
 
 
+
 class SiteSettings(models.Model):
     hero_title = models.CharField(max_length=200)
     hero_subtitle = models.CharField(max_length=300)
 
-    hero_image = models.ImageField(
-        upload_to="site/hero/",
+    hero_image = CloudinaryField(
+        "Hero Image",
         blank=True,
-        null=True,
-        validators=[validate_image_size]
+        null=True
     )
 
     footer_text = models.CharField(max_length=200)
@@ -111,6 +118,7 @@ class SiteSettings(models.Model):
 
     def __str__(self):
         return "Site Settings"
+
 
 
 class Inquiry(models.Model):
