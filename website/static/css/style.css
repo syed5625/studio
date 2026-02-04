@@ -59,7 +59,7 @@ body {
 
 
 .hero {
-    min-height: 90vh;                 
+    min-height: calc(100vh - 80px);
     width: 100%;
     background-size: cover;
     background-position: center;
@@ -67,11 +67,14 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    padding:60px;
+    color:white;
 }
+
 
 .hero-overlay {
     width: 100%;
-    min-height: 90vh;
+    min-height: calc(100vh - 80px);
     background: linear-gradient(
         rgba(0, 0, 0, 0.45),
         rgba(0, 0, 0, 0.55)
@@ -84,12 +87,13 @@ body {
     max-width: 900px;
     padding: 4rem;
     color: #fff;
+    transform: translateY(30px);
+    transition: 1s ease;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    letter-spacing: 1px;
     margin-bottom: 1rem;
 }
 
@@ -98,24 +102,9 @@ body {
     opacity: 0.95;
 }
 
-.hero-content {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 1s ease;
-}
-
 .hero-content.show {
     opacity: 1;
     transform: translateY(0);
-}
-
-.hero {
-    height:calc(100vh - 80px);
-    background-size:cover;
-    display:flex;
-    align-items:center;
-    padding:60px;
-    color:white;
 }
 
 .grid-section {
