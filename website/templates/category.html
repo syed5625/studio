@@ -2,25 +2,33 @@
 {% load static %}
 
 {% block content %}
-<h1 class="page-title">{{ category.name }} Photography</h1>
+
+<h1 class="page-title">{{ category.name }}</h1>
 
 {% if category.description %}
-<p class="category-description">{{ category.description }}</p>
+<p class="category-description">
+    {{ category.description }}
+</p>
 {% endif %}
 
-<section class="grid-section">
+<section class="grid-section reveal">
     {% for project in projects %}
-    <div class="card">
-        <a href="{% url 'project_detail' project.id %}">
-            <img src="{{ project.image.url }}" alt="{{ project.title }}">
-            <h3>{{ project.title }}</h3>
+        <a href="{% url 'project_detail' project.slug %}" class="card">
+            {% if project.cover_image %}
+                <img src="{{ project.cover_image.url }}"
+                     alt="{{ project.title }}"
+                     loading="lazy">
+            {% endif %}
+            <div class="card-content">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.short_description }}</p>
+            </div>
         </a>
-        <p>{{ project.description|truncatechars:100 }}</p>
-    </div>
     {% empty %}
-    <p>No projects available in this category yet.</p>
+        <p>No projects available in this category yet.</p>
     {% endfor %}
 </section>
 
 <a href="{% url 'portfolio' %}" class="back-link">← Back to Portfolio</a>
+
 {% endblock %}
