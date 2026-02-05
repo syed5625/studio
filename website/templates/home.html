@@ -70,20 +70,19 @@
 </section>
 
 {% if featured_projects %}
-<section class="grid-section reveal">
+<section class="featured-section reveal">
     <div class="container">
         <h2 class="section-title">Featured Work</h2>
 
-        <div class="grid">
+        <div class="featured-grid">
             {% for project in featured_projects %}
-            <a href="{% url 'project_detail' project.slug %}" class="card">
+            <a href="{% url 'project_detail' project.slug %}" class="featured-card">
 
-                {% if project.cover_image %}
-                   <img src="{{ project.cover_image.url }}?w=800&h=600&crop=fill&q=auto&f=auto" loading="lazy" alt="{{ project.title }}">
+                <img src="{{ project.cover_image.url }}"
+                     alt="{{ project.title }}"
+                     loading="lazy">
 
-                {% endif %}
-
-                <div class="card-content">
+                <div class="featured-overlay">
                     <h3>{{ project.title }}</h3>
                     <p>{{ project.short_description }}</p>
                 </div>
@@ -94,6 +93,27 @@
     </div>
 </section>
 {% endif %}
+{% if categories %}
+<section class="category-highlight reveal">
+    <div class="container">
+        <h2 class="section-title">Our Specialties</h2>
+
+        <div class="category-grid">
+            {% for category in categories %}
+            <a href="{% url 'portfolio_by_category' category.slug %}"
+               class="category-card">
+
+                <div class="category-overlay">
+                    <h3>{{ category.name }}</h3>
+                </div>
+
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
 
 <section class="about-preview reveal">
     <div class="container">
