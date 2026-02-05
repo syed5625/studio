@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
-from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
-
-
+from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
@@ -11,10 +9,10 @@ class Category(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField(blank=True)
 
-    image = models.ImageField(
-        upload_to="categories/",
+    image = CloudinaryField(
+        "Category Image",
         blank=True,
-        null=True,
+        null=True
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -135,3 +133,9 @@ class Inquiry(models.Model):
 
     def __str__(self):
         return f"Inquiry from {self.name}"
+
+
+def validate_image_size(image):
+    max_size = 5 * 1024 * 1024
+    if image and image.size > max_size:
+        raise ValidationError("Image file too large (max 5MB).")
