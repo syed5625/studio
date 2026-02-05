@@ -29,6 +29,19 @@
     </div>
 </section>
 
+{% if categories %}
+<section class="grid-section reveal">
+    {% for category in categories %}
+        <a href="{% url 'portfolio_by_category' category.slug %}" class="card">
+            {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }}">
+            {% endif %}
+            <h3>{{ category.name }}</h3>
+        </a>
+    {% endfor %}
+</section>
+{% endif %}
+
 <section class="services-section reveal">
     <div class="container">
         <h2 class="section-title">What We Do</h2>
@@ -99,17 +112,19 @@
         <h2 class="section-title">Our Specialties</h2>
 
         <div class="category-grid">
-            {% for category in categories %}
-            <a href="{% url 'portfolio_by_category' category.slug %}"
-               class="category-card">
+    {% for category in categories %}
+    <a href="{% url 'portfolio_by_category' category.slug %}"
+       class="category-card"
+       style="background-image:url('{{ category.image.url }}');">
 
-                <div class="category-overlay">
-                    <h3>{{ category.name }}</h3>
-                </div>
-
-            </a>
-            {% endfor %}
+        <div class="category-overlay">
+            <h3>{{ category.name }}</h3>
         </div>
+
+    </a>
+    {% endfor %}
+</div>
+
     </div>
 </section>
 {% endif %}

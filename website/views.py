@@ -3,10 +3,10 @@ from .models import Category, Project, SiteSettings
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import InquiryForm
+from .models import Category
 
 def home(request):
     settings = SiteSettings.objects.first()
-
     featured_projects = Project.objects.filter(
         is_featured=True,
         is_published=True
