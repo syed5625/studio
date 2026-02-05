@@ -4,11 +4,6 @@ from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
 
 
-def validate_image_size(image):
-    max_size = 5 * 1024 * 1024  
-    if image.size > max_size:
-        raise ValidationError("Image file too large (maximum 5MB allowed).")
-
 
 
 class Category(models.Model):
@@ -20,7 +15,6 @@ class Category(models.Model):
         upload_to="categories/",
         blank=True,
         null=True,
-        validators=[validate_image_size]
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
