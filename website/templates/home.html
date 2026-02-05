@@ -29,7 +29,7 @@
     </div>
 </section>
 
-{% if categories %}
+{% if categories|length %}
 <section class="grid-section reveal">
     {% for category in categories %}
         <a href="{% url 'portfolio_by_category' category.slug %}" class="card">

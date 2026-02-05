@@ -3,10 +3,11 @@ from .models import Category, Project, SiteSettings
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import InquiryForm
-from .models import Category
+from .models import Category, Project, SiteSettings
 
 def home(request):
-    settings = SiteSettings.objects.first()
+    site_settings = SiteSettings.objects.first()
+
     featured_projects = Project.objects.filter(
         is_featured=True,
         is_published=True
@@ -15,11 +16,10 @@ def home(request):
     categories = Category.objects.all()
 
     return render(request, "home.html", {
-        "settings": settings,
+        "settings": site_settings,
         "featured_projects": featured_projects,
-        "categories": categories,
+        "categories": categories, 
     })
-
 
 
 
