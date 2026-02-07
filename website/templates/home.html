@@ -11,36 +11,35 @@
 
 {% block content %}
 
+<!-- HERO -->
+<section class="hero"
 {% if settings and settings.hero_image %}
-<section class="hero" style="background-image: url('{{ settings.hero_image.url }}');">
-{% else %}
-<section class="hero">
+style="background-image: url('{{ settings.hero_image.url }}');"
 {% endif %}
+>
     <div class="hero-overlay">
         <div class="hero-content">
-            <h1>
-                {{ settings.hero_title|default:"Capturing Moments That Matter" }}
-            </h1>
-            <p>
-                {{ settings.hero_subtitle|default:"Professional photography for every story" }}
-            </p>
+            <h1>{{ settings.hero_title|default:"Capturing Moments That Matter" }}</h1>
+            <p>{{ settings.hero_subtitle|default:"Professional photography for every story" }}</p>
         </div>
     </div>
 </section>
 
+<!-- CATEGORIES GRID -->
 {% if categories %}
 <section class="grid-section reveal">
     {% for category in categories %}
-        <a href="{% url 'portfolio_by_category' category.slug %}" class="card">
-            {% if category.image %}
-                <img src="{{ category.image.url }}" alt="{{ category.name }}">
-            {% endif %}
-            <h3>{{ category.name }}</h3>
-        </a>
+    <a href="{% url 'portfolio_by_category' category.slug %}" class="card">
+        {% if category.image %}
+        <img src="{{ category.image.url }}" alt="{{ category.name }}">
+        {% endif %}
+        <h3>{{ category.name }}</h3>
+    </a>
     {% endfor %}
 </section>
 {% endif %}
 
+<!-- SERVICES -->
 <section class="services-section reveal">
     <div class="container">
         <h2 class="section-title">What We Do</h2>
@@ -48,27 +47,25 @@
         <div class="services-grid">
             <div class="service-card">
                 <h3>Fashion Photography</h3>
-                <p>Editorial, modeling portfolios, and creative fashion shoots crafted with precision and style.</p>
+                <p>Editorial and creative fashion shoots.</p>
             </div>
-
             <div class="service-card">
                 <h3>Food Photography</h3>
-                <p>Visually rich food imagery designed for restaurants, brands, menus, and social media.</p>
+                <p>Restaurant, brand, and menu visuals.</p>
             </div>
-
             <div class="service-card">
                 <h3>Commercial Photography</h3>
-                <p>Clean, modern visuals for products, brands, campaigns, and corporate storytelling.</p>
+                <p>Products, branding, and campaigns.</p>
             </div>
-
             <div class="service-card">
                 <h3>Drone & Aerial</h3>
-                <p>Cinematic aerial photography for events, properties, landscapes, and commercials.</p>
+                <p>Cinematic aerial visuals.</p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- FEATURED PROJECTS -->
 {% if featured_projects %}
 <section class="featured-section reveal">
     <div class="container">
@@ -78,7 +75,7 @@
             {% for project in featured_projects %}
             <a href="{% url 'project_detail' project.slug %}" class="featured-card">
                 {% if project.cover_image %}
-                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" loading="lazy">
+                <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
                 {% endif %}
                 <div class="featured-overlay">
                     <h3>{{ project.title }}</h3>
@@ -91,33 +88,12 @@
 </section>
 {% endif %}
 
-{% if categories %}
-<section class="category-highlight reveal">
-    <div class="container">
-        <h2 class="section-title">Our Specialties</h2>
-
-        <div class="category-grid">
-            {% for category in categories %}
-            <a href="{% url 'portfolio_by_category' category.slug %}"
-               class="category-card"
-               {% if category.image %}
-               style="background-image:url('{{ category.image.url }}');"
-               {% endif %}>
-                <div class="category-overlay">
-                    <h3>{{ category.name }}</h3>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
+<!-- ABOUT -->
 <section class="about-preview reveal">
     <div class="container">
         <h2>About</h2>
         <p>
-            I am a passionate photographer dedicated to telling stories through images.
+            I am a professional photographer focused on storytelling through visuals.
         </p>
         <a href="{% url 'about' %}" class="btn">Learn More</a>
     </div>
