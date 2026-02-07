@@ -2,11 +2,19 @@
 {% load static %}
 
 {% block title %}
-{{ settings.hero_title|default:"Photography Studio" }}
+{% if settings %}
+    {{ settings.hero_title }}
+{% else %}
+    Photography Studio
+{% endif %}
 {% endblock %}
 
 {% block meta_description %}
-{{ settings.hero_subtitle|default:"Professional photography portfolio" }}
+{% if settings %}
+    {{ settings.hero_subtitle }}
+{% else %}
+    Professional photography portfolio
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -19,13 +27,25 @@ style="background-image: url('{{ settings.hero_image.url }}');"
 >
     <div class="hero-overlay">
         <div class="hero-content">
-            <h1>{{ settings.hero_title|default:"Capturing Moments That Matter" }}</h1>
-            <p>{{ settings.hero_subtitle|default:"Professional photography for every story" }}</p>
+            <h1>
+                {% if settings %}
+                    {{ settings.hero_title }}
+                {% else %}
+                    Capturing Moments That Matter
+                {% endif %}
+            </h1>
+            <p>
+                {% if settings %}
+                    {{ settings.hero_subtitle }}
+                {% else %}
+                    Professional photography for every story
+                {% endif %}
+            </p>
         </div>
     </div>
 </section>
 
-<!-- CATEGORIES GRID -->
+<!-- CATEGORIES -->
 {% if categories %}
 <section class="grid-section reveal">
     {% for category in categories %}
@@ -93,7 +113,11 @@ style="background-image: url('{{ settings.hero_image.url }}');"
     <div class="container">
         <h2>About</h2>
         <p>
-            I am a professional photographer focused on storytelling through visuals.
+            {% if settings and settings.about_text %}
+                {{ settings.about_text }}
+            {% else %}
+                I am a professional photographer focused on storytelling through visuals.
+            {% endif %}
         </p>
         <a href="{% url 'about' %}" class="btn">Learn More</a>
     </div>

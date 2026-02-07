@@ -140,6 +140,9 @@ STATIC_URL = "/static/"
 
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Media files (User uploaded images)
@@ -170,6 +173,6 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_REFERRER_POLICY = "same-origin"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-WHITENOISE_MAX_AGE = 60 * 60 * 24 * 30  
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
