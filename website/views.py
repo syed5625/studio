@@ -11,7 +11,7 @@ def home(request):
     featured_projects = Project.objects.filter(
         is_featured=True,
         is_published=True
-    )[:6]
+    )
 
     categories = Category.objects.all()
 

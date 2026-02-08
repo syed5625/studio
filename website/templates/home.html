@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-{% if settings %}
+{% if settings and settings.hero_title %}
     {{ settings.hero_title }}
 {% else %}
     Photography Studio
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block meta_description %}
-{% if settings %}
+{% if settings and settings.hero_subtitle %}
     {{ settings.hero_subtitle }}
 {% else %}
     Professional photography portfolio
@@ -19,23 +19,24 @@
 
 {% block content %}
 
-<!-- HERO -->
+<!-- HERO SECTION -->
 <section class="hero"
 {% if settings and settings.hero_image %}
-style="background-image: url('{{ settings.hero_image.url }}');"
+    style="background-image: url('{{ settings.hero_image.url }}');"
 {% endif %}
 >
     <div class="hero-overlay">
         <div class="hero-content">
             <h1>
-                {% if settings %}
+                {% if settings and settings.hero_title %}
                     {{ settings.hero_title }}
                 {% else %}
                     Capturing Moments That Matter
                 {% endif %}
             </h1>
+
             <p>
-                {% if settings %}
+                {% if settings and settings.hero_subtitle %}
                     {{ settings.hero_subtitle }}
                 {% else %}
                     Professional photography for every story
@@ -49,12 +50,12 @@ style="background-image: url('{{ settings.hero_image.url }}');"
 {% if categories %}
 <section class="grid-section reveal">
     {% for category in categories %}
-    <a href="{% url 'portfolio_by_category' category.slug %}" class="card">
-        {% if category.image %}
-        <img src="{{ category.image.url }}" alt="{{ category.name }}">
-        {% endif %}
-        <h3>{{ category.name }}</h3>
-    </a>
+        <a href="{% url 'portfolio_by_category' category.slug %}" class="card">
+            {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }}">
+            {% endif %}
+            <h3>{{ category.name }}</h3>
+        </a>
     {% endfor %}
 </section>
 {% endif %}
@@ -69,14 +70,17 @@ style="background-image: url('{{ settings.hero_image.url }}');"
                 <h3>Fashion Photography</h3>
                 <p>Editorial and creative fashion shoots.</p>
             </div>
+
             <div class="service-card">
                 <h3>Food Photography</h3>
                 <p>Restaurant, brand, and menu visuals.</p>
             </div>
+
             <div class="service-card">
                 <h3>Commercial Photography</h3>
                 <p>Products, branding, and campaigns.</p>
             </div>
+
             <div class="service-card">
                 <h3>Drone & Aerial</h3>
                 <p>Cinematic aerial visuals.</p>
@@ -93,31 +97,28 @@ style="background-image: url('{{ settings.hero_image.url }}');"
 
         <div class="featured-grid">
             {% for project in featured_projects %}
-            <a href="{% url 'project_detail' project.slug %}" class="featured-card">
-                {% if project.cover_image %}
-                <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
-                {% endif %}
-                <div class="featured-overlay">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.short_description }}</p>
-                </div>
-            </a>
+                <a href="{% url 'project_detail' project.slug %}" class="featured-card">
+                    {% if project.cover_image %}
+                        <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
+                    {% endif %}
+
+                    <div class="featured-overlay">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.short_description }}</p>
+                    </div>
+                </a>
             {% endfor %}
         </div>
     </div>
 </section>
 {% endif %}
 
-<!-- ABOUT -->
+<!-- ABOUT PREVIEW -->
 <section class="about-preview reveal">
     <div class="container">
         <h2>About</h2>
         <p>
-            {% if settings and settings.about_text %}
-                {{ settings.about_text }}
-            {% else %}
-                I am a professional photographer focused on storytelling through visuals.
-            {% endif %}
+            I am a professional photographer focused on storytelling through visuals.
         </p>
         <a href="{% url 'about' %}" class="btn">Learn More</a>
     </div>
