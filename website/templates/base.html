@@ -2,11 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>
-        {% block title %}
-        Photography Studio
-        {% endblock %}
-    </title>
+    <title>{% block title %}Photography Studio{% endblock %}</title>
 
     <meta name="description" content="{% block meta_description %}Professional photography portfolio{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +26,6 @@
 </header>
 
 {% block content %}{% endblock %}
-
-<div id="lightbox">
-    <span class="lightbox-close" onclick="closeLightbox()">×</span>
-    <img id="lightbox-img" alt="Expanded view">
-</div>
 
 <footer>
     <p>© 2025 Creative Studio</p>
