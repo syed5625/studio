@@ -1,12 +1,5 @@
 from django.urls import path
 from . import views
-from django.http import HttpResponse
-
-def robots_txt(request):
-    return HttpResponse(
-        "User-agent: *\nAllow: /",
-        content_type="text/plain"
-    )
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -18,7 +11,4 @@ urlpatterns = [
 
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
-]
-urlpatterns += [
-    path("robots.txt", robots_txt),
 ]

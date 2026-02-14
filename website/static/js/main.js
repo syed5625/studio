@@ -37,7 +37,3 @@ function revealOnLoadAndScroll() {
 window.addEventListener("load", revealOnLoadAndScroll);
 
 window.addEventListener("scroll", revealOnLoadAndScroll);
-window.addEventListener("load", () => {
-    const hero = document.querySelector(".hero-content");
-    if (hero) hero.classList.add("show");
-});

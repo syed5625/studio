@@ -14,8 +14,7 @@ from pathlib import Path
 import dj_database_url
 import cloudinary
 import cloudinary_storage
-import cloudinary.uploader
-import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,8 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bsrh8kkgs$!!zkj(^u!n0lm#)#733_1tk6$@nyz#@aqtz_gm0k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False") == "True"
-
+DEBUG = os.environ.get("DEBUG") == "True"
 
 
 ALLOWED_HOSTS = [
@@ -84,9 +82,6 @@ TEMPLATES = [
 ]
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'website/templates']
 WSGI_APPLICATION = 'studio_site.wsgi.application'
-TEMPLATES[0]["OPTIONS"]["context_processors"] += [
-    "website.context_processors.site_settings",
-]
 
 
 # Database
@@ -162,15 +157,4 @@ CLOUDINARY_STORAGE = {
     "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-CSRF_TRUSTED_ORIGINS = [
-"https://*.onrender.com",
-]
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-SECURE_REFERRER_POLICY = "same-origin"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
